@@ -10,7 +10,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module Button_Synchronizer(in, clk, reset, out);
 input in, clk, reset;
-output reg out;
+output out;
 
 localparam IDLE=0, PRESSED=1,LOCKOUT=2;
 
@@ -32,13 +32,15 @@ if(in) begin
     end 
     end
 PRESSED : begin nxtState <= LOCKOUT;
-        out <= 1; end 
+         end 
 LOCKOUT : begin 
             if (~in) begin
                 nxtState <= IDLE; end 
             else begin nxtState <= LOCKOUT; end
-            out <= 0;
             end
+default: nxtState <= IDLE;
 endcase 
 end
+
+assign out = (state == PRESSED);
 endmodule
