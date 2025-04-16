@@ -18,7 +18,6 @@ reg [1:0] state, nxtState;
 always @(posedge clk or posedge reset) begin
     if (reset) begin
         state <= IDLE;
-        out <= 0;
     end
     else begin state <= nxtState; end
 end
