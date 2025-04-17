@@ -64,6 +64,11 @@ reset = 1;#100; reset = 0;#100;
 five = 1;#100; five=0;#100;
 five = 1; ten = 1;#100;five = 0; ten = 0;#100; // should stay at 5
 reset = 1;#100; reset = 0;#100;
+
+ten = 1;#100; ten=0;#100;
+ten = 1;#100; ten=0;#100;
+ten = 1;#100; ten=0;#100;
+reset = 1;#100; reset = 0;#100;
 $finish;
 end
 

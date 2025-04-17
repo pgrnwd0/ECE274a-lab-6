@@ -16,7 +16,7 @@ module VendingMachine(clk, reset, nickle, dime, quarter, num, candy);
 
 input clk, reset, nickle, dime, quarter;
 output reg candy;
-output reg [5:0] num;
+output reg [6:0] num;
 
 localparam IDLE=0,FIVE=1,TEN=2,FIFTEEN=3,
 TWENTY=4,TWENTYFIVE=5,THIRTY=6,THIRTYFIVE=7,
@@ -45,24 +45,28 @@ IDLE :  begin
     if (quarter && ~nickle && ~dime) begin nxtState<=TWENTYFIVE; end
 end
 FIVE : begin 
+    candy <= 0; 
     num <= 5;
     if (nickle && ~dime && ~quarter) begin nxtState <=TEN; end
     if (dime && ~nickle && ~quarter) begin nxtState <=FIFTEEN; end
     if (quarter && ~nickle && ~dime) begin nxtState<=THIRTY; end
 end 
-TEN : begin 
+TEN : begin
+    candy <= 0;
     num <= 10;
     if (nickle && ~dime && ~quarter) begin nxtState <=FIFTEEN; end
     if (dime && ~nickle && ~quarter) begin nxtState <=TWENTY; end
     if (quarter && ~nickle && ~dime) begin nxtState<=THIRTYFIVE; end
 end
 FIFTEEN :  begin
+    candy <= 0;
     num <= 15; 
     if (nickle && ~dime && ~quarter) begin nxtState <=TWENTY; end
     if (dime && ~nickle && ~quarter) begin nxtState <=TWENTYFIVE; end
     if (quarter && ~nickle && ~dime) begin nxtState<=FOURTY; end
 end
-TWENTY : begin 
+TWENTY : begin
+    candy <= 0; 
     num <= 20;
     if (nickle && ~dime && ~quarter) begin nxtState <=TWENTYFIVE; end
     if (dime && ~nickle && ~quarter) begin nxtState <=THIRTY; end
